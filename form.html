@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Roboto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <title>Форма заявки</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Блок на всю ширину экрана */
+    .request-section {
+      width: 100%;
+      height: 300px;
+      background: #EEEEEE;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Контентная часть */
+    .request-container {
+      width: 1180px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    /* Заголовок */
+    .request-title {
+      margin: 60px 0 50px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    /* Горизонтальное расположение */
+    .request-form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      /* Отступ снизу 90px */
+      margin-bottom: 90px;
+    }
+
+    /* Поля */
+    .request-input {
+      width: 280px;
+      height: 50px;
+      background: #FFFFFF;
+      border: none;
+      padding: 0 16px;
+
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      color: #000000;
+
+      outline: none;
+    }
+
+    /* Цвет placeholder */
+    .request-input::placeholder {
+      color: #D9D9D9;
+    }
+
+    /* Кнопка */
+    .request-button {
+      width: 280px;
+      height: 50px;
+      background: #000000;
+      border: none;
+
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #FFFFFF;
+
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .request-button:hover {
+      opacity: 0.9;
+    }
+
+    /* Адаптив */
+    @media (max-width: 1200px) {
+
+      .request-container {
+        width: 100%;
+        padding: 0 20px;
+        height: auto;
+      }
+
+      .request-section {
+        height: auto;
+        padding: 40px 0;
+      }
+
+      .request-form {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .request-input,
+      .request-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<section class="request-section">
+
+  <div class="request-container">
+
+    <h2 class="request-title">
+      Оставьте заявку
+    </h2>
+
+    <form class="request-form">
+
+      <input 
+        type="text" 
+        class="request-input"
+        placeholder="Ваше имя"
+      >
+
+      <input 
+        type="tel" 
+        class="request-input"
+        placeholder="Телефон"
+      >
+
+      <input 
+        type="email" 
+        class="request-input"
+        placeholder="E-mail"
+      >
+
+      <button type="submit" class="request-button">
+        Отправить
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+</body>
+</html>
