@@ -1,170 +1,92 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<form class="request-form" id="lead-form">
 
-  <!-- Roboto -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <input 
+    type="text" 
+    class="request-input"
+    name="name"
+    placeholder="Ваше имя"
+    required
+  >
 
-  <title>Форма заявки</title>
+  <input 
+    type="tel" 
+    class="request-input"
+    name="phone"
+    placeholder="Телефон"
+    required
+  >
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <input 
+    type="email" 
+    class="request-input"
+    name="email"
+    placeholder="E-mail"
+    required
+  >
 
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-    }
+  <button type="submit" class="request-button">
+    Отправить
+  </button>
 
-    /* Блок на всю ширину экрана */
-    .request-section {
-      width: 100%;
-      height: 300px;
-      background: #EEEEEE;
-      display: flex;
-      justify-content: center;
-    }
+</form>
 
-    /* Контентная часть */
-    .request-container {
-      width: 1180px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
+<!-- Сообщение -->
+<div id="success-message" style="
+  display:none;
+  margin-top:20px;
+  font-family:Roboto,sans-serif;
+  font-size:16px;
+  color:#000000;
+  text-align:center;
+">
+  Спасибо! Заявка отправлена.
+</div>
 
-    /* Заголовок */
-    .request-title {
-      margin: 60px 0 50px;
-      font-size: 28px;
-      font-weight: 700;
-      color: #000000;
-      text-align: center;
-    }
+<script>
+  const form = document.getElementById('lead-form');
 
-    /* Горизонтальное расположение */
-    .request-form {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  form.addEventListener('submit', async function(e) {
 
-      /* Отступ снизу 90px */
-      margin-bottom: 90px;
-    }
+    e.preventDefault();
 
-    /* Поля */
-    .request-input {
-      width: 280px;
-      height: 50px;
-      background: #FFFFFF;
-      border: none;
-      padding: 0 16px;
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: form.email.value
+    };
 
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      color: #000000;
+    try {
 
-      outline: none;
-    }
+      const response = await fetch(
+        'https://chatter.salebot.pro/api/51e366a75',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        }
+      );
 
-    /* Цвет placeholder */
-    .request-input::placeholder {
-      color: #D9D9D9;
-    }
+      if (response.ok) {
 
-    /* Кнопка */
-    .request-button {
-      width: 280px;
-      height: 50px;
-      background: #000000;
-      border: none;
+        document.getElementById('success-message').style.display = 'block';
 
-      font-family: 'Roboto', sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      color: #FFFFFF;
+        form.reset();
 
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
+      } else {
 
-    .request-button:hover {
-      opacity: 0.9;
-    }
+        alert('Ошибка отправки формы');
 
-    /* Адаптив */
-    @media (max-width: 1200px) {
-
-      .request-container {
-        width: 100%;
-        padding: 0 20px;
-        height: auto;
       }
 
-      .request-section {
-        height: auto;
-        padding: 40px 0;
-      }
+    } catch(error) {
 
-      .request-form {
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 40px;
-      }
+      alert('Ошибка соединения');
 
-      .request-input,
-      .request-button {
-        width: 100%;
-      }
+      console.error(error);
+
     }
-  </style>
-</head>
 
-<body>
-
-<section class="request-section">
-
-  <div class="request-container">
-
-    <h2 class="request-title">
-      Оставьте заявку
-    </h2>
-
-    <form class="request-form">
-
-      <input 
-        type="text" 
-        class="request-input"
-        placeholder="Ваше имя"
-      >
-
-      <input 
-        type="tel" 
-        class="request-input"
-        placeholder="Телефон"
-      >
-
-      <input 
-        type="email" 
-        class="request-input"
-        placeholder="E-mail"
-      >
-
-      <button type="submit" class="request-button">
-        Отправить
-      </button>
-
-    </form>
-
-  </div>
-
-</section>
-
-</body>
-</html>
+  });
+</script>
