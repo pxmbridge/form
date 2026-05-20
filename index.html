@@ -1,3 +1,47 @@
+<form class="request-form" id="lead-form">
+
+  <input 
+    type="text" 
+    class="request-input"
+    name="name"
+    placeholder="Ваше имя"
+    required
+  >
+
+  <input 
+    type="tel" 
+    class="request-input"
+    name="phone"
+    placeholder="Телефон"
+    required
+  >
+
+  <input 
+    type="email" 
+    class="request-input"
+    name="email"
+    placeholder="E-mail"
+    required
+  >
+
+  <button type="submit" class="request-button">
+    Отправить
+  </button>
+
+</form>
+
+<!-- Сообщение -->
+<div id="success-message" style="
+  display:none;
+  margin-top:20px;
+  font-family:Roboto,sans-serif;
+  font-size:16px;
+  color:#000000;
+  text-align:center;
+">
+  Спасибо! Заявка отправлена.
+</div>
+
 <script>
   const form = document.getElementById('lead-form');
 
